@@ -21,26 +21,56 @@
       </tr>
     </table>
   </div>
+  <Loading v-show="!show"></Loading>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
 import MySwiper from "@/components/Swiper.vue";
+import Loading from "@/components/Loading.vue";
+import { getRecords } from "@/utils/api.js";
 
 export default {
   inheritAttrs: false,
   name: "Home",
-  props: {
-    games: Array,
-  },
   data() {
     return {
       title: "GAME ZOOM",
+      games: [],
+      show: false,
     };
+  },
+  watch: {
+    games(n) {
+      if (n.length) {
+        this.show = !this.show;
+      } else {
+        this.show = false;
+      }
+    },
   },
   components: {
     Header,
     MySwiper,
+    Loading,
+  },
+  methods: {
+    async getData() {
+      const res = await getRecords(10);
+      // console.log(res);
+      const data = await res
+        .map((record) => {
+          return record.fields;
+        })
+        .sort((a, b) => {
+          return a.id - b.id;
+        });
+
+      this.games = [...data];
+    },
+  },
+  created() {
+    this.getData();
   },
 };
 </script>

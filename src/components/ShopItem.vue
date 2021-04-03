@@ -34,7 +34,6 @@
 </template>
 
 <script>
-// import { base } from "@/utils/airtable.js";
 export default {
   name: "ShopItem",
   props: {

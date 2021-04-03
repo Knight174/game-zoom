@@ -1,20 +1,14 @@
 <template>
   <footer>
-    <router-link
-      class="bottom-bar-btn"
-      :to="{ name: 'Home', params: { id: 0 } }"
-      >{{ bars[0] }}</router-link
-    >
-    <router-link
-      class="bottom-bar-btn"
-      :to="{ name: 'Shop', params: { id: 1 } }"
-      >{{ bars[1] }}</router-link
-    >
-    <router-link
-      class="bottom-bar-btn"
-      :to="{ name: 'Account', params: { id: 2 } }"
-      >{{ bars[2] }}</router-link
-    >
+    <router-link class="bottom-bar-btn" :to="{ name: 'Home' }">{{
+      bars[0]
+    }}</router-link>
+    <router-link class="bottom-bar-btn" :to="{ name: 'Shop' }">{{
+      bars[1]
+    }}</router-link>
+    <router-link class="bottom-bar-btn" :to="{ name: 'Account' }">{{
+      bars[2]
+    }}</router-link>
   </footer>
 </template>
 
