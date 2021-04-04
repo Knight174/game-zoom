@@ -18,6 +18,7 @@ const routes = [
     path: "/shop",
     name: "Shop",
     component: () => import(/* webpackChunkName: "shop" */ "../views/Shop.vue"),
+    meta: { isKeepAlive: true },
   },
   {
     path: "/detail/:nameen",
@@ -44,6 +45,24 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  // scrollBehavior(to, from, savedPosition) {
+  //   // console.log("即将前往：", to); // to：要进入的目标路由对象，到哪里去
+  //   // console.log("当前：", from); // from：离开的路由对象，哪里来
+  //   // console.log("保存的位置：", savedPosition); // savePosition：会记录滚动条的坐标，点击前进/后退的时候记录值{x:?,y:?}
+
+  //   if (savedPosition) {
+  //     return savedPosition;
+  //   } else {
+  //     const position = {};
+  //     if (to.hash) {
+  //       position.selector = to.hash;
+  //       if (document.querySelector(to.hash)) {
+  //         return position;
+  //       }
+  //       return;
+  //     }
+  //   }
+  // },
   routes,
 });
 

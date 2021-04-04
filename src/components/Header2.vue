@@ -13,7 +13,6 @@ export default {
   },
   methods: {
     back() {
-      console.log(1);
       return this.$router.go(-1);
     },
   },
