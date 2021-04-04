@@ -1,6 +1,13 @@
 <template>
   <Header2 :title="currentGame.name"></Header2>
   <div class="detail">
+    <section class="part banner">
+      <Banner
+        :imgs="currentGame.Attachments"
+        @pass-index="handleIndex"
+      ></Banner>
+      <Type :type="currentGame.type"></Type>
+    </section>
     <section class="part description">
       <h1 class="title">游戏详情</h1>
       <p>
@@ -16,12 +23,21 @@
       <AchieveWay :way="currentGame.url"></AchieveWay>
     </section>
   </div>
+  <BannerDetail
+    :currentIndex="bannerDetailIndex"
+    :currentPic="currentGame.Attachments"
+    v-show="isShow"
+    @banner-detail-hd="isShow = !isShow"
+  ></BannerDetail>
 </template>
 
 <script>
 import Header2 from "@/components/Header2.vue";
 import DetailAsk from "@/components/DetailAsk.vue";
 import AchieveWay from "@/components/AchieveWay.vue";
+import Banner from "@/components/Banner.vue";
+import BannerDetail from "@/components/BannerDetail.vue";
+import Type from "@/components/Type.vue";
 import { tableDetail, getFirstPageRecords } from "@/utils/api.js";
 
 export default {
@@ -34,12 +50,17 @@ export default {
       games: [],
       currentGame: {},
       configs: [],
+      bannerDetailIndex: null,
+      isShow: false,
     };
   },
   components: {
     Header2,
     DetailAsk,
     AchieveWay,
+    Banner,
+    Type,
+    BannerDetail,
   },
   watch: {
     games(n) {
@@ -50,7 +71,7 @@ export default {
         this.currentGame.config_lin,
       ];
       this.configs = this.handleConfigItem(list);
-      console.log(this.configs);
+      // console.log(this.configs);
     },
   },
   methods: {
@@ -86,6 +107,11 @@ export default {
       }
       // console.log(target);
       return target;
+    },
+    handleIndex(index) {
+      // console.log(index, "now at parent");
+      this.bannerDetailIndex = index;
+      this.isShow = !this.isShow;
     },
   },
   async created() {

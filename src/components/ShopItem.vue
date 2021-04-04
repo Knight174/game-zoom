@@ -25,7 +25,7 @@
       <span class="t-price">特价</span>
       <span class="o-price">{{ "￥" + item.price }}</span>
     </div>
-    <div
+    <!-- <div
       class="like material-icons"
       @click="toggleLike(item.id)"
       v-show="item.isLike"
@@ -38,7 +38,7 @@
       v-show="!item.isLike"
     >
       favorite
-    </div>
+    </div> -->
   </li>
 </template>
 

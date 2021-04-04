@@ -23,6 +23,10 @@
         {{ configs[state].GC }}
       </li>
       <li>
+        <span>direct_x：</span>
+        {{ configs[state].DX }}
+      </li>
+      <li>
         <span>存储空间：</span>
         {{ configs[state].SC }}
       </li>
