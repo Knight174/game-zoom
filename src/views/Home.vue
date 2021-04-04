@@ -15,20 +15,26 @@
       <tr v-for="item in games" :key="item.id">
         <td>{{ item.id }}</td>
         <td>
-          <a :href="item.url">{{ item.name }}</a>
+          <!-- <a :href="item.url">{{ item.name }}</a> -->
+          <router-link
+            :to="{ name: 'Detail', params: { nameen: item.nameen } }"
+            >{{ item.name }}</router-link
+          >
         </td>
         <td>{{ item.type.toString() }}</td>
       </tr>
     </table>
   </div>
+  <Footer></Footer>
   <Loading v-show="!show"></Loading>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import MySwiper from "@/components/Swiper.vue";
 import Loading from "@/components/Loading.vue";
-import { getRecords } from "@/utils/api.js";
+import { tableHome, getRecords } from "@/utils/api.js";
 
 export default {
   inheritAttrs: false,
@@ -51,12 +57,13 @@ export default {
   },
   components: {
     Header,
+    Footer,
     MySwiper,
     Loading,
   },
   methods: {
     async getData() {
-      const res = await getRecords(10);
+      const res = await getRecords(tableHome, 10);
       // console.log(res);
       const data = await res
         .map((record) => {

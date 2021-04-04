@@ -1,8 +1,5 @@
 <template>
   <header>
-    <router-link to="/" class="goback" v-show="seen">
-      <span class="material-icons"> navigate_before </span>
-    </router-link>
     {{ title }}
   </header>
 </template>
@@ -12,24 +9,6 @@ export default {
   name: "Header",
   props: {
     title: String,
-  },
-  data() {
-    return {
-      name: "👾 GAME ZOOM",
-    };
-  },
-  computed: {
-    seen() {
-      if (
-        this.$route.name === "Home" ||
-        this.$route.name === "Shop" ||
-        this.$route.name === "Account"
-      ) {
-        return false;
-      } else {
-        return true;
-      }
-    },
   },
 };
 </script>
@@ -46,12 +25,5 @@ header {
   position: sticky;
   z-index: 100;
   top: 0;
-}
-.goback span.material-icons {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 4.5rem;
-  color: $c-font;
 }
 </style>

@@ -1,9 +1,18 @@
 <template>
   <li v-for="item in games" :key="item.id">
-    <div class="imgbox">
-      <img :src="item.Attachments[0].url" :alt="item.name" />
-    </div>
-    <h1>{{ item.name }}</h1>
+    <router-link
+      :to="{
+        name: 'Detail',
+        params: { nameen: item.nameen },
+      }"
+    >
+      <div class="imgbox">
+        <img :src="item.Attachments[0].url" :alt="item.name" />
+      </div>
+    </router-link>
+    <router-link to="/">
+      <h1>{{ item.name }}</h1>
+    </router-link>
     <h3>{{ item.type }}</h3>
     <div class="price price-free" v-if="item.price === 0">
       {{ "免费" }}
@@ -76,7 +85,6 @@ li {
   margin: auto;
   margin-top: 2rem;
   padding: 1rem;
-  // border: 1px solid #000;
   border-radius: 1.5rem;
   background-color: rgba($c-black, 0.6);
   box-shadow: 3px 3px 3px rgba($c-black, 0.5);
@@ -84,6 +92,9 @@ li {
     img {
       width: 100%;
     }
+  }
+  a {
+    color: $c-font;
   }
   h1 {
     margin: 0.8rem 0;

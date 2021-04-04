@@ -1,23 +1,13 @@
 <template>
-  <!-- <keep-alive>
-    <router-view :key="this.$route.fullPath" />
-  </keep-alive> -->
   <router-view v-slot="{ Component }">
     <keep-alive include="Account">
       <component :is="Component" />
     </keep-alive>
   </router-view>
-  <Footer></Footer>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
-
-export default {
-  components: {
-    Footer,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss">

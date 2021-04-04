@@ -3,14 +3,16 @@
   <ul class="shop">
     <ShopItem :games="games"></ShopItem>
   </ul>
+  <Footer></Footer>
   <Loading v-show="!show"></Loading>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import ShopItem from "@/components/ShopItem.vue";
 import Loading from "@/components/Loading.vue";
-import { getFirstPageRecords } from "@/utils/api.js";
+import { tableShop, getFirstPageRecords } from "@/utils/api.js";
 
 export default {
   name: "Shop",
@@ -33,12 +35,13 @@ export default {
   },
   components: {
     Header,
+    Footer,
     ShopItem,
     Loading,
   },
   methods: {
     async getData() {
-      const res = await getFirstPageRecords();
+      const res = await getFirstPageRecords(tableShop);
       // console.log(res);
       const data = await res
         .map((record) => {
